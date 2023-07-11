@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 
 
-export async function GET(req){
+export async function POST(req){
     try {
         const client = await clientPromise;
         const db = client.db(process.env.SELECTED_DB);

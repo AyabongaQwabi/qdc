@@ -128,10 +128,9 @@ const DetailsForm = ({ members }) => {
           onChange={save(["surname"])}
         />
         <Form.Text className="text-muted">
-          Our Earliest ancestor is Sonyethe who bore Nqumama, who bore Qwabi and
+          Our Earliest ancestor is Sonyethe who gave birth to Nqumama, who gave birth Qwabi and
           Gudu, so it's okay if your surname is not Qwabi as long as you come
-          from the family tree. More information about the family tree will be
-          provided in this website at a later stage.
+          from the family tree.
         </Form.Text>
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -212,9 +211,7 @@ const DetailsForm = ({ members }) => {
           onChange={save(["id"])}
         />
         <Form.Text className="text-muted">
-          We'd love to have a unique identifier for each family member in our
-          database, so we're asking for your ID number. This info will be
-          securely stored and used solely for organizing our family website
+          This info will be securely stored and used only for organizing our family website
         </Form.Text>
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail">
