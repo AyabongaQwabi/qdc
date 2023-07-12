@@ -20,7 +20,7 @@ export default function Edit() {
 
   useEffect(() => {
     axios
-      .get(`api/members`)
+      .post(`api/members`)
       .then((response) => {
         console.log("Found members");
         console.log(response.data);
