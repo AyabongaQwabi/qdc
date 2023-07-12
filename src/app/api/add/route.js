@@ -1,4 +1,5 @@
 
+import { sendNewMemberNotification } from "@/app/notifications";
 import clientPromise from "../../lib/mongo"
 import { NextRequest, NextResponse } from "next/server";
 
@@ -11,6 +12,7 @@ export async function POST(req){
         console.log(json)
         const db = client.db(process.env.SELECTED_DB);
         await db.collection("members").insertOne(json);
+        sendNewMemberNotification(json)
         return new NextResponse(JSON.stringify({success: true}), {
             status: 200,
             headers: { "Content-Type": "application/json" },

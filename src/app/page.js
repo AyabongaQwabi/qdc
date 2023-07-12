@@ -5,8 +5,20 @@ import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import provincesJson from "./data/provinces.json";
 import DetailsForm from "./components/detailsForm.js";
+import axios from "axios";
 
 export default function Home() {
+  const sendStatsMessage = () => {
+    axios
+      .post("/api/stats", {})
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <div
       className="row"
@@ -59,6 +71,10 @@ export default function Home() {
                   List
                 </Button>
               </Col>
+              <br />
+              <br />
+              <br />
+              <a href="#" onClick={sendStatsMessage}>Send Stats to Family Whatsapp Group</a>
             </div>
           </Col>
         </div>
