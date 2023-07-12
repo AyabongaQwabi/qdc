@@ -54,6 +54,11 @@ export default function Home() {
                   Edit
                 </Button>
               </Col>
+              <Col md={4} xs={12}>
+                <Button variant="primary" href="/list" size="lg" className="w-100 mb-3">
+                  List
+                </Button>
+              </Col>
             </div>
           </Col>
         </div>
