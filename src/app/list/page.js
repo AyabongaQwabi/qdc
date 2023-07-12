@@ -72,7 +72,7 @@ export default function Search() {
                       return (
                         <tr>
                           <td><small>{result.title !== "Other" ? result.title : ""} {result.firstName} {result.surname}</small></td>
-                          <td><small>{result.dateOfBirth.dateStr}</small></td>
+                          <td><small>{result.isAlive === "true" ? result.dateOfBirth.dateStr : "DECEASED"}</small></td>
                           <td>
                             <small>
                               {result.address.city}
