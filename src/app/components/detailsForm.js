@@ -426,6 +426,7 @@ const DetailsForm = ({ members }) => {
         type="submit"
         className="mt-4 mb-4"
         onClick={submit}
+        disabled={loading}
       >
         Submit
       </Button>
