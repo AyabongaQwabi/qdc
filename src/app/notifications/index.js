@@ -3,7 +3,8 @@ var qs = require('qs');
 
 
 
-const lutshaGroup="120363035550476060@g.us;"
+const lutshaGroup="120363035550476060@g.us"
+
 
 export const postWhatsappMessageToFamilyGroup = (message) => {
     var data = qs.stringify({
