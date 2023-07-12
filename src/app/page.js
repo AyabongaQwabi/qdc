@@ -6,6 +6,7 @@ import Col from "react-bootstrap/Col";
 import provincesJson from "./data/provinces.json";
 import DetailsForm from "./components/detailsForm.js";
 import axios from "axios";
+import Image from "next/image";
 
 export default function Home() {
   const sendStatsMessage = () => {
@@ -21,14 +22,14 @@ export default function Home() {
 
   return (
     <div
-      className="row"
+      className="row mb-4"
       style={{
         color: "#48453e",
         background: "#e4ca1470",
-        height: "100vh",
+        minHeight: "100vh",
       }}
     >
-      <div className="col-12">
+      <div className="col-12 mb-4">
         <div
           className="row mt-3 -flex flex-row align-items-center justify-content-center"
           style={{
@@ -36,11 +37,12 @@ export default function Home() {
           }}
         >
           <Col xs={10} md={6}>
-            <h1>Qwabi Family</h1>
-            <h5>
-              Hello, my name is Ayabonga Qwabi, son of Tamara Qwabi, Grandson of
-              Bhangile Qwabi.
-            </h5>
+            <div className="d-flex flex-column justify-content-center align-items-center">
+              <Image src="swallow.svg" width={100} height={100} responsive />
+              <h1>Qwabi Family</h1>
+              <p>Sizukulwana sika Sonyethe</p>
+            </div>
+            <br />
             <br />
             <p>
               The aim of this website is to collect information about the
@@ -52,29 +54,72 @@ export default function Home() {
               button.
             </p>
             <br />
-            <div className="row">
-              <Col md={4} xs={12}>
-                <Button variant="primary" href="/add" size="lg" className="w-100 mb-3">
+            <div className="row mt-4 mb-4">
+              <Col md={3} xs={12}>
+                <Button
+                  variant="primary"
+                  href="/add"
+                  size="lg"
+                  className="w-100 mb-3"
+                >
                   Add
                 </Button>
               </Col>
-              <Col xs={12} md={4}>
-                <Button variant="primary" href="/search" size="lg" className="w-100 mb-3">Search </Button>
+              <Col xs={12} md={3}>
+                <Button
+                  variant="primary"
+                  href="/search"
+                  size="lg"
+                  className="w-100 mb-3"
+                >
+                  Search{" "}
+                </Button>
               </Col>
-              <Col md={4} xs={12}>
-                <Button variant="primary" href="/search" size="lg" className="w-100 mb-3">
+              <Col md={3} xs={12}>
+                <Button
+                  variant="primary"
+                  href="/search"
+                  size="lg"
+                  className="w-100 mb-3"
+                >
                   Edit
                 </Button>
               </Col>
-              <Col md={4} xs={12}>
-                <Button variant="primary" href="/list" size="lg" className="w-100 mb-3">
+              <Col md={3} xs={12}>
+                <Button
+                  variant="primary"
+                  href="/list"
+                  size="lg"
+                  className="w-100 mb-3"
+                >
                   List
                 </Button>
               </Col>
               <br />
               <br />
               <br />
-              <a href="#" onClick={sendStatsMessage}>Send Stats to Family Whatsapp Group</a>
+              <h5 className="mt-4">More things you can do on this website</h5>
+              <ul>
+                <li>
+                  <a href="/deceased">Provide deceased person details</a>
+                </li>
+                <br />
+                <li>
+                  <a href="/medical-info">Provide medical information</a>
+                </li>
+                <br />
+                <li>
+                  <a href="/education-info">
+                    Provide Education and Occupational information
+                  </a>
+                </li>
+                <br />
+                <li>
+                  <a href="#" onClick={sendStatsMessage}>
+                    Send Stats to Family Whatsapp Group
+                  </a>
+                </li>
+              </ul>
             </div>
           </Col>
         </div>

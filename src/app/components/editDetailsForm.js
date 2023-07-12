@@ -36,7 +36,7 @@ const EditDetailsForm = ({ members, person }) => {
         year: details.dateOfBirth.year,
         dateStr,
       },
-      createdAt: moment().format("DD/MM/YYYY"),
+      lastModified: moment().format("DD/MM/YYYY"),
     };
 
     console.log("submiting", newDetails);
@@ -266,6 +266,39 @@ const EditDetailsForm = ({ members, person }) => {
       </Form.Group>
       {details.isAlive === "true" && (
         <Fragment>
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Label>Is this person married?</Form.Label>
+            <Form.Check
+              type="radio"
+              label="Yes"
+              name="formHorizontalRadios"
+              id="formHorizontalRadios1"
+              value={true}
+              checked={details.isMarried === "true"}
+              onChange={save(["isMarried"])}
+            />
+            <Form.Check
+              type="radio"
+              label="No"
+              name="formHorizontalRadios"
+              id="formHorizontalRadios2"
+              value={false}
+              checked={details.isMarried === "false"}
+              onChange={save(["isMarried"])}
+            />
+          </Form.Group>
+          {details.isMarried === "true" && (
+            <Fragment>
+              <Form.Label>Partners full name</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter partners name and surname"
+                value={details.spousesName}
+                onChange={save(["spousesName"])}
+                className="mb-3"
+              />
+            </Fragment>
+          )}
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Cellphone Number</Form.Label>
             <Form.Control

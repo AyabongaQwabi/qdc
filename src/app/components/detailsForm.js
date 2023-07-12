@@ -37,6 +37,13 @@ const DetailsForm = ({ members }) => {
       province: "",
       postalCode: "",
     },
+    placeOfBirth: {
+      city: "",
+      province: "",
+      postalCode: "",
+    },
+    isMarried: "false",
+    spousesName: ""
   });
 
   const save = R.curry((path, event) => {
@@ -166,7 +173,8 @@ const DetailsForm = ({ members }) => {
         <Form.Text className="text-muted">
           <strong>These people have already been added</strong>
           <p>
-            If the person you are trying to add is in this list, please cancel at the top of the page
+            If the person you are trying to add is in this list, please cancel
+            at the top of the page
           </p>
           <br />
           {existingMembers.map((member) => (
@@ -179,7 +187,6 @@ const DetailsForm = ({ members }) => {
               <br />
             </Fragment>
           ))}
-          
         </Form.Text>
       )}
       <Form.Group className="mb-3 mt-4" controlId="formBasicEmail">
@@ -266,7 +273,40 @@ const DetailsForm = ({ members }) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>
-          <strong>Address</strong>
+          <strong>Place of Birth</strong>
+        </Form.Label>
+        <Col>
+          <Form.Label>City</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="e.g Queenstown"
+            value={details.placeOfBirth.city}
+            onChange={save(["placeOfBirth", "city"])}
+          />
+          <Form.Label>Province</Form.Label>
+          <Form.Select
+            aria-label="Select provice"
+            value={details.placeOfBirth.province}
+            onChange={save(["placeOfBirth", "province"])}
+          >
+            <option>Select Province</option>
+            {provincesJson.map((province) => (
+              <option key={province.code} value={province.name}>
+                {province.name}
+              </option>
+            ))}
+          </Form.Select>
+          <Form.Label>Postal Code</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="e.g 5326"
+            onChange={save(["placeOfBirth", "postalCode"])}
+          />
+        </Col>
+      </Form.Group>
+      <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Label>
+          <strong>Current Address</strong>
         </Form.Label>
         <Col>
           <Form.Label>Street</Form.Label>
@@ -333,6 +373,39 @@ const DetailsForm = ({ members }) => {
       </Form.Group>
       {details.isAlive === "true" && (
         <Fragment>
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Label>Is this person married?</Form.Label>
+            <Form.Check
+              type="radio"
+              label="Yes"
+              name="isMarriedTrue"
+              id="isMarriedTrue"
+              value={true}
+              checked={details.isMarried === "true"}
+              onChange={save(["isMarried"])}
+            />
+            <Form.Check
+              type="radio"
+              label="No"
+              name="isMarriedFalse"
+              id="isMarriedFalse"
+              value={false}
+              checked={details.isMarried === "false"}
+              onChange={save(["isMarried"])}
+            />
+          </Form.Group>
+          {details.isMarried === "true" && (
+            <Fragment>
+              <Form.Label>Partners full name</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter partners name and surname"
+                value={details.spousesName}
+                onChange={save(["spousesName"])}
+                className="mb-3"
+              />
+            </Fragment>
+          )}
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Cellphone Number</Form.Label>
             <Form.Control
