@@ -4,7 +4,7 @@ import Col from "react-bootstrap/Col";
 import Spinner from "react-bootstrap/Spinner";
 import { useRouter } from "next/navigation";
 import provincesJson from "../data/provinces.json";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import * as R from "ramda";
 import axios from "axios";
 import moment from "moment";
@@ -12,6 +12,7 @@ import moment from "moment";
 const DetailsForm = ({ members }) => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const [existingMembers, setExistingMembers] = useState([]);
   const [details, setDetails] = useState({
     title: "Mr",
     firstName: "",
@@ -78,6 +79,34 @@ const DetailsForm = ({ members }) => {
     router.push("/success");
   };
 
+  useEffect(() => {
+    if (
+      !R.isEmpty(details.firstName) &&
+      !R.isEmpty(details.secondName) &&
+      !R.isEmpty(details.surname)
+    ) {
+      // search for members with the same name
+      const search = `${details.firstName} ${details.secondName} ${details.surname}`;
+      axios
+        .post("/api/explicit-search", {
+          member: {
+            firstName: details.firstName,
+            secondName: details.secondName,
+            surname: details.surname,
+          },
+        })
+        .then((res) => {
+          console.log("SUCCESS");
+          console.log(res);
+          console.log(res.data);
+          setExistingMembers(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [details.firstName, details.secondName, details.surname]);
+
   console.log(details);
   return (
     <Form>
@@ -128,12 +157,32 @@ const DetailsForm = ({ members }) => {
           onChange={save(["surname"])}
         />
         <Form.Text className="text-muted">
-          Our Earliest ancestor is Sonyethe who gave birth to Nqumama, who gave birth Qwabi and
-          Gudu, so it's okay if your surname is not Qwabi as long as you come
-          from the family tree.
+          Our Earliest ancestor is Sonyethe who gave birth to Nqumama, who gave
+          birth Qwabi and Gudu, so it's okay if your surname is not Qwabi as
+          long as you come from the family tree.
         </Form.Text>
       </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
+      {existingMembers.length > 0 && (
+        <Form.Text className="text-muted">
+          <strong>These people have already been added</strong>
+          <p>
+            If the person you are trying to add is in this list, please cancel at the top of the page
+          </p>
+          <br />
+          {existingMembers.map((member) => (
+            <Fragment key={member._id}>
+              <a href={`/edit?id=${member._id}`}>
+                <a>
+                  {member.firstName} {member.secondName} {member.surname}
+                </a>
+              </a>
+              <br />
+            </Fragment>
+          ))}
+          
+        </Form.Text>
+      )}
+      <Form.Group className="mb-3 mt-4" controlId="formBasicEmail">
         <Form.Label>Gender</Form.Label>
         <Form.Select
           value={details.gender}
@@ -211,7 +260,8 @@ const DetailsForm = ({ members }) => {
           onChange={save(["id"])}
         />
         <Form.Text className="text-muted">
-          This info will be securely stored and used only for organizing our family website
+          This info will be securely stored and used only for organizing our
+          family website
         </Form.Text>
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail">
