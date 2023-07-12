@@ -31,7 +31,7 @@ export const postWhatsappMessageToFamilyGroup = (message) => {
 }
 
 export const sendNewMemberNotification = (member) => {
-    const message = `*${member.title} ${member.firstName} ${member.surname}* was added to the family database.`
+    const message = `*${member.title} ${member.firstName.trim()} ${member.surname.trim()}* was added to the family database.`
     postWhatsappMessageToFamilyGroup(message);
 };
 
