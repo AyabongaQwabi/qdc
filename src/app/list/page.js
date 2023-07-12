@@ -22,12 +22,8 @@ export default function Search() {
     axios
       .post("/api/members", {})
       .then((res) => {
-        console.log("SUCCESS");
-        console.log(res);
-        console.log(res.data);
         setSearchResults(res.data);
         setLoading(false);
-
       })
       .catch((err) => {
         console.log(err);
