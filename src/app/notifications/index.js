@@ -3,11 +3,12 @@ var qs = require('qs');
 
 
 
+const lutshaGroup="120363035550476060@g.us;"
 
 export const postWhatsappMessageToFamilyGroup = (message) => {
     var data = qs.stringify({
         "token": "tav6fkslwem2w9ib",
-        "to": "120363143854239034@g.us",
+        "to": lutshaGroup,
         "body": message
     });
     
