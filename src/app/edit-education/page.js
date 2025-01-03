@@ -73,7 +73,7 @@ function Edit() {
   );
 }
 
-export default EditEducation = () => {
+export default () => {
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <Edit />

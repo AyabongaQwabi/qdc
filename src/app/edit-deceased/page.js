@@ -76,7 +76,7 @@ function Edit() {
   );
 }
 
-export default EditDeceased = () => {
+export default () => {
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <Edit />
