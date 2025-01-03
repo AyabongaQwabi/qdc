@@ -8,7 +8,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { isNil } from 'ramda';
 import Spinner from 'react-bootstrap/Spinner';
-
+import { Suspense } from 'react';
 function Edit() {
   const [person, setPerson] = useState(null);
   const [allMembers, setAllMembers] = useState([]);
