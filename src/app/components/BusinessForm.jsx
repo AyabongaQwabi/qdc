@@ -16,7 +16,7 @@ export default function BusinessForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:3000/api/businesses', {
+      const response = await fetch('http://localhost:3000/api/business', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, description, owner }),
@@ -32,7 +32,7 @@ export default function BusinessForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className='space-y-4'>
+    <div className='space-y-4'>
       <div>
         <Label htmlFor='name'>Business Name</Label>
         <Input
@@ -60,12 +60,12 @@ export default function BusinessForm() {
           required
         />
       </div>
-      <Button type='submit'>Add Business</Button>
+      <Button onClick={handleSubmit}>Add Business</Button>
       {message && (
         <Alert>
           <AlertDescription>{message}</AlertDescription>
         </Alert>
       )}
-    </form>
+    </div>
   );
 }

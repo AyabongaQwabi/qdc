@@ -9,9 +9,9 @@ export default function ProjectList() {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    fetch('http://localhost:3000/api/projects')
+    fetch('http://localhost:3000/api/project')
       .then((response) => response.json())
-      .then((data) => setProjects(data))
+      .then((data) => setProjects(data.data))
       .catch((err) => setError('Failed to load projects'));
   }, []);
 
@@ -23,6 +23,7 @@ export default function ProjectList() {
     );
   }
 
+  console.log('Projects:', projects);
   return (
     <div className='space-y-4'>
       {projects.map((project) => (

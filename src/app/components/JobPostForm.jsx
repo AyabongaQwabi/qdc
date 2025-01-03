@@ -18,7 +18,7 @@ export default function JobPostForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:3000/api/jobs', {
+      const response = await fetch('http://localhost:3000/api/job', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ title, description, company, location, salary }),
@@ -34,7 +34,7 @@ export default function JobPostForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className='space-y-4'>
+    <div className='space-y-4'>
       <div>
         <Label htmlFor='title'>Job Title</Label>
         <Input
@@ -80,12 +80,12 @@ export default function JobPostForm() {
           required
         />
       </div>
-      <Button type='submit'>Add Job Post</Button>
+      <Button onClick={handleSubmit}>Add Job Post</Button>
       {message && (
         <Alert>
           <AlertDescription>{message}</AlertDescription>
         </Alert>
       )}
-    </form>
+    </div>
   );
 }

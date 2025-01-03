@@ -9,9 +9,9 @@ export default function JobPostList() {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    fetch('http://localhost:3000/api/jobs')
+    fetch('http://localhost:3000/api/job')
       .then((response) => response.json())
-      .then((data) => setJobPosts(data))
+      .then((data) => setJobPosts(data.data))
       .catch((err) => setError('Failed to load job posts'));
   }, []);
 

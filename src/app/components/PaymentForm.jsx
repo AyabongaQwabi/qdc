@@ -21,7 +21,7 @@ export default function PaymentForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:3000/api/payments', {
+      const response = await fetch('http://localhost:3000/api/payment', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ amount, paymentType }),
@@ -37,7 +37,7 @@ export default function PaymentForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className='space-y-4'>
+    <div className='space-y-4'>
       <div>
         <Label htmlFor='amount'>Amount</Label>
         <Input
@@ -60,12 +60,12 @@ export default function PaymentForm() {
           </SelectContent>
         </Select>
       </div>
-      <Button type='submit'>Submit Payment</Button>
+      <Button onClick={handleSubmit}>Submit Payment</Button>
       {message && (
         <Alert>
           <AlertDescription>{message}</AlertDescription>
         </Alert>
       )}
-    </form>
+    </div>
   );
 }

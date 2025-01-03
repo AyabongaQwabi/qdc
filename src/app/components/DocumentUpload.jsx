@@ -75,11 +75,14 @@ export default function DocumentUpload() {
       >
         <div className='space-y-2'>
           <Label htmlFor='documentType'>Document Type</Label>
-          <Select onValueChange={(value) => setDocumentType(value)}>
-            <SelectTrigger id='documentType'>
+          <Select
+            onValueChange={(value) => setDocumentType(value)}
+            className='bg-white'
+          >
+            <SelectTrigger id='documentType' className='bg-white'>
               <SelectValue placeholder='Select Document Type' />
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent className='bg-white'>
               <SelectItem value='business'>Business</SelectItem>
               <SelectItem value='government'>Government</SelectItem>
               <SelectItem value='work'>Work</SelectItem>
@@ -94,6 +97,7 @@ export default function DocumentUpload() {
               <Input
                 id='fileTitle'
                 value={fileTitle}
+                className='bg-white'
                 onChange={(e) => setFileTitle(e.target.value)}
               />
             </div>
@@ -103,6 +107,7 @@ export default function DocumentUpload() {
                 id='year'
                 type='number'
                 value={year}
+                className='bg-white'
                 onChange={(e) => setYear(e.target.value)}
               />
             </div>
@@ -112,6 +117,7 @@ export default function DocumentUpload() {
                 <Input
                   id='grade'
                   value={grade}
+                  className='bg-white'
                   onChange={(e) => setGrade(e.target.value)}
                 />
               </div>
@@ -122,6 +128,7 @@ export default function DocumentUpload() {
                 <Input
                   id='department'
                   value={department}
+                  className='bg-white'
                   onChange={(e) => setDepartment(e.target.value)}
                 />
               </div>
@@ -133,6 +140,7 @@ export default function DocumentUpload() {
           <Input
             id='file'
             type='file'
+            className='bg-white p-2'
             onChange={(e) =>
               setSelectedFile(e.target.files ? e.target.files[0] : null)
             }

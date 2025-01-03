@@ -10,28 +10,24 @@ export default function PollList() {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    fetch('http://localhost:3000/api/polls')
+    fetch('http://localhost:3000/api/poll')
       .then((response) => response.json())
-      .then((data) => setPolls(data))
+      .then((data) => setPolls(data.data))
       .catch((err) => setError('Failed to load polls'));
   }, []);
 
   const handleVote = async (pollId, optionIndex) => {
     try {
-      const response = await fetch(
-        `http://localhost:3000/api/polls/${pollId}/vote`,
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ optionIndex }),
-        }
-      );
+      const response = await fetch(`http://localhost:3000/api/vote`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ optionIndex, pollId }),
+      });
       if (response.ok) {
         // Refresh polls after voting
-        const updatedPolls = await fetch(
-          'http://localhost:3000/api/polls'
-        ).then((res) => res.json());
-        setPolls(updatedPolls);
+        const updatedPolls = await fetch('http://localhost:3000/api/poll')
+          .then((res) => res.json())
+          .then((data) => setPolls(data.data));
       } else {
         throw new Error('Failed to vote');
       }
@@ -51,19 +47,26 @@ export default function PollList() {
   return (
     <div className='space-y-4'>
       {polls.map((poll) => (
-        <Card key={poll.id}>
+        <Card key={poll._id}>
           <CardHeader>
             <CardTitle>{poll.question}</CardTitle>
           </CardHeader>
           <CardContent>
             {poll.options.map((option, index) => (
-              <Button
+              <div
                 key={index}
-                onClick={() => handleVote(poll.id, index)}
-                className='mr-2 mb-2'
+                className='flex items-center justify-between mb-2'
               >
-                {option}
-              </Button>
+                <Button
+                  onClick={() => handleVote(poll._id, index)}
+                  className='mr-2'
+                >
+                  {option}
+                </Button>
+                <span className='text-sm text-gray-600'>
+                  Votes: {poll.votes ? poll.votes[index] : 0}
+                </span>
+              </div>
             ))}
           </CardContent>
         </Card>

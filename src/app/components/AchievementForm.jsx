@@ -17,7 +17,7 @@ export default function AchievementForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:3000/api/achievements', {
+      const response = await fetch('http://localhost:3000/api/achievement', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ title, description, achiever, date }),
@@ -33,7 +33,7 @@ export default function AchievementForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className='space-y-4'>
+    <div className='space-y-4'>
       <div>
         <Label htmlFor='title'>Achievement Title</Label>
         <Input
@@ -71,12 +71,12 @@ export default function AchievementForm() {
           required
         />
       </div>
-      <Button type='submit'>Add Achievement</Button>
+      <Button onClick={handleSubmit}>Add Achievement</Button>
       {message && (
         <Alert>
           <AlertDescription>{message}</AlertDescription>
         </Alert>
       )}
-    </form>
+    </div>
   );
 }

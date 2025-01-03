@@ -9,9 +9,9 @@ export default function BusinessList() {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    fetch('http://localhost:3000/api/businesses')
+    fetch('http://localhost:3000/api/business')
       .then((response) => response.json())
-      .then((data) => setBusinesses(data))
+      .then((data) => setBusinesses(data.data))
       .catch((err) => setError('Failed to load businesses'));
   }, []);
 

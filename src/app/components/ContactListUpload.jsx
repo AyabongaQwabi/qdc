@@ -66,7 +66,11 @@ export default function ContactListUpload() {
         database to be shared between all family members.
       </p>
       <div className='flex items-center space-x-4 mb-4'>
-        <Input type='file' onChange={handleFileChange} />
+        <input
+          className='text-sm bg-white p-2 rounded-md border border-gray-300 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring'
+          type='file'
+          onChange={handleFileChange}
+        />
         <Button onClick={handleCSVUpload}>Upload</Button>
       </div>
       {message && (

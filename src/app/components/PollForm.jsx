@@ -11,7 +11,7 @@ export default function PollForm() {
   const [options, setOptions] = useState(['', '']);
   const [message, setMessage] = useState('');
 
-  const handleOptionChange = (index, valueg) => {
+  const handleOptionChange = (index, value) => {
     const newOptions = [...options];
     newOptions[index] = value;
     setOptions(newOptions);
@@ -24,7 +24,7 @@ export default function PollForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:3000/api/polls', {
+      const response = await fetch('http://localhost:3000/api/poll', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ question, options }),
@@ -40,7 +40,7 @@ export default function PollForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className='space-y-4'>
+    <div className='space-y-4'>
       <div>
         <Label htmlFor='question'>Poll Question</Label>
         <Input
@@ -64,12 +64,12 @@ export default function PollForm() {
       <Button type='button' onClick={addOption} variant='outline'>
         Add Option
       </Button>
-      <Button type='submit'>Create Poll</Button>
+      <Button onClick={handleSubmit}>Create Poll</Button>
       {message && (
         <Alert>
           <AlertDescription>{message}</AlertDescription>
         </Alert>
       )}
-    </form>
+    </div>
   );
 }

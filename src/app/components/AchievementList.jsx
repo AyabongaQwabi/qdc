@@ -9,9 +9,9 @@ export default function AchievementList() {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    fetch('http://localhost:3000/api/achievements')
+    fetch('http://localhost:3000/api/achievement')
       .then((response) => response.json())
-      .then((data) => setAchievements(data))
+      .then((data) => setAchievements(data.data))
       .catch((err) => setError('Failed to load achievements'));
   }, []);
 

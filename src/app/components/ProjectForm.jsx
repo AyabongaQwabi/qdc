@@ -16,7 +16,7 @@ export default function ProjectForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:3000/api/projects', {
+      const response = await fetch('http://localhost:3000/api/project', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ title, description, goal }),
@@ -32,7 +32,7 @@ export default function ProjectForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className='space-y-4'>
+    <div className='space-y-4'>
       <div>
         <Label htmlFor='title'>Project Title</Label>
         <Input
@@ -61,12 +61,14 @@ export default function ProjectForm() {
           required
         />
       </div>
-      <Button type='submit'>Create Project</Button>
+      <Button onClick={handleSubmit}>Create Project</Button>
       {message && (
-        <Alert>
-          <AlertDescription>{message}</AlertDescription>
+        <Alert className='bg-orange-300'>
+          <AlertDescription className='bg-orange-300'>
+            {message}
+          </AlertDescription>
         </Alert>
       )}
-    </form>
+    </div>
   );
 }
