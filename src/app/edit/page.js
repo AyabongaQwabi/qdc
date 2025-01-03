@@ -8,8 +8,8 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { isNil } from 'ramda';
 import Spinner from 'react-bootstrap/Spinner';
-
-export default function Edit() {
+import { Suspense } from 'react';
+function Edit() {
   const [person, setPerson] = useState(null);
   const [allMembers, setAllMembers] = useState([]);
 
@@ -74,3 +74,11 @@ export default function Edit() {
     </div>
   );
 }
+
+export default () => {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <Edit />
+    </Suspense>
+  );
+};
