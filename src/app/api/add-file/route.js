@@ -1,4 +1,4 @@
-import { sendNewFile } from '@/app/notifications';
+import { sendNewFile } from '../../notifications';
 import clientPromise from '../../lib/mongo';
 import { NextRequest, NextResponse } from 'next/server';
 
