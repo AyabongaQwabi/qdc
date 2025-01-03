@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react';
 import { isNil } from 'ramda';
 import Spinner from 'react-bootstrap/Spinner';
 
-export default function Edit() {
+function Edit() {
   const [person, setPerson] = useState(null);
   const [allMembers, setAllMembers] = useState([]);
 
@@ -72,3 +72,11 @@ export default function Edit() {
     </div>
   );
 }
+
+export default EditMedical = () => {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <Edit />
+    </Suspense>
+  );
+};
