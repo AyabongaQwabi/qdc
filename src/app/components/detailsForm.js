@@ -45,8 +45,8 @@ const DetailsForm = ({ members }) => {
     isMarried: 'false',
     spousesName: '',
     isMarriedIntoQwabi: false,
-    qwabiSpouse:"",
-    wasMarried:false,
+    qwabiSpouse: '',
+    wasMarried: false,
   });
 
   const save = R.curry((path, event) => {
@@ -423,7 +423,7 @@ const DetailsForm = ({ members }) => {
           )}
 
           {(details.isMarried === 'true' || details.wasMarried === 'true') && (
-            <>
+            <div>
               <Form.Label>
                 This person married to an Original Qwabi Family member
               </Form.Label>
@@ -433,7 +433,7 @@ const DetailsForm = ({ members }) => {
                 name='isMarriedIntoTrue'
                 id='isMarriedIntoTrue'
                 value={true}
-                checked={details.: false === 'true'}
+                checked={details.isMarriedIntoQwabi === 'true'}
                 onChange={save([': false'])}
               />
               <Form.Check
@@ -442,13 +442,13 @@ const DetailsForm = ({ members }) => {
                 name='isMarriedIntoFalse'
                 id='isMarriedIntoFalse'
                 value={false}
-                checked={details.: false === 'false'}
+                checked={details.isMarriedIntoQwabi === 'false'}
                 onChange={save([': false'])}
               />
-            </>
+            </div>
           )}
 
-          {details.: false === 'true' && (
+          {details.isMarriedIntoQwabi === 'false' && (
             <Fragment>
               <Form.Label>
                 Who are did they marry to outside the Qwabi family?
@@ -463,7 +463,7 @@ const DetailsForm = ({ members }) => {
             </Fragment>
           )}
 
-          {details.: false === 'true' && (
+          {details.isMarriedIntoQwabi === 'true' && (
             <Fragment>
               <Form.Label>
                 Who are they married to inside the Qwabi family?
